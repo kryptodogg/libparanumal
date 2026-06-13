@@ -11,6 +11,9 @@ CXXFLAGS = -O2
 
 include ${OCCA_DIR}/scripts/Makefile
 
+HDF5_CFLAGS := $(shell pkg-config --cflags hdf5-openmpi)
+HDF5_LIBS := $(shell pkg-config --libs hdf5-openmpi)
+
 # define variables
 HDRDIR  = ../../include
 OGSDIR  = ../../libs/gatherScatter
@@ -22,7 +25,7 @@ CC	= mpic++ -std=c++2a
 LD	= mpic++ -std=c++2a
 
 # compiler flags to be used (set to compile with debugging on)
-CFLAGS = -I. -DOCCA_VERSION_1_0 $(compilerFlags) $(flags) -I$(HDRDIR) -I$(OGSDIR) -g -D DHOLMES='"${CURDIR}/../.."' -D DACOUSTICS='"${CURDIR}"'
+CFLAGS = -I. -DOCCA_VERSION_1_0 $(compilerFlags) $(flags) $(HDF5_CFLAGS) -I$(HDRDIR) -I$(OGSDIR) -g -D DHOLMES='"${CURDIR}/../.."' -D DACOUSTICS='"${CURDIR}"'
 
 # if Gaussian Random Fields are included with #define INCLUDE_GRF 1 in acoustics.h, remember to add -lbtwxt to LIBS (see README)
 OS := $(shell uname)
@@ -31,7 +34,7 @@ ifeq ($(OS),Darwin)
 	LDFLAGS	= -Xpreprocessor -fopenmp -lomp -DOCCA_VERSION_1_0 $(compilerFlags) $(flags) -g
 else
 	# link flags to be used (Linux)
-	LDFLAGS	= -DOCCA_VERSION_1_0 $(compilerFlags) $(flags) -g -lhdf5 -larmadillo	
+	LDFLAGS	= -DOCCA_VERSION_1_0 $(compilerFlags) $(flags) -g $(HDF5_LIBS) -larmadillo	
 endif
 
 # libraries to be linked in

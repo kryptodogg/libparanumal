@@ -315,7 +315,9 @@ ifdef OCCA_HIP_ENABLED
 
   ifeq ($(hipEnabled),1)
     ifeq ($(usingLinux),1)
-      links += -lhip_hcc
+      paths += -I$(HIP_PATH)/include
+      compilerFlags += -D__HIP_PLATFORM_AMD__
+      links += -L$(HIP_PATH)/lib -lamdhip64
     endif
   endif
 else

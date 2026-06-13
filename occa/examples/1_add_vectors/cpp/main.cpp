@@ -48,7 +48,9 @@ int main(int argc, char **argv) {
   occa::memory o_a, o_b, o_ab;
 
   //---[ Device setup with string flags ]-------------------
-  device.setup("mode: 'Serial'");
+  // ROCm validation for the paper's bundled OCCA backend.
+  device.setup("mode      : 'HIP', "
+               "device_id : 0");
 
   // device.setup("mode     : 'OpenMP', "
   //              "schedule : 'compact', "
@@ -59,9 +61,6 @@ int main(int argc, char **argv) {
   //              "device_id   : 1");
 
   // device.setup("mode      : 'CUDA', "
-  //              "device_id : 0");
-
-  // device.setup("mode      : 'HIP', "
   //              "device_id : 0");
 
   // device.setup("mode         : 'Threads', "

@@ -23,7 +23,7 @@
 #include <occa/defines.hpp>
 
 #if (OCCA_OS & (OCCA_LINUX_OS | OCCA_MACOS_OS))
-#  if (OCCA_OS != OCCA_WINUX_OS)
+#  if (OCCA_OS == OCCA_MACOS_OS)
 #    include <sys/sysctl.h>
 #  endif
 #  include <pthread.h>

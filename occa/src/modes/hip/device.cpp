@@ -86,7 +86,7 @@ namespace occa {
 
       archMajorVersion = properties.get("hip/arch/major", archMajorVersion);
       archMinorVersion = properties.get("hip/arch/minor", archMinorVersion);
-      properties["kernel/target"] = toString(props.gcnArch);
+      properties["kernel/target"] = props.gcnArchName;
 
       properties["kernel/verbose"] = properties.get("verbose", false);
     }
@@ -353,11 +353,11 @@ namespace occa {
     }
 
     void device::setArchCompilerFlags(occa::properties &kernelProps) {
-      if (kernelProps.get<std::string>("compiler_flags").find("-t gfx") == std::string::npos) {
+      if (kernelProps.get<std::string>("compiler_flags").find("--offload-arch=") == std::string::npos) {
         std::stringstream ss;
         std::string arch = kernelProps["target"];
         if (arch.size()) {
-          ss << " -t gfx" << arch << ' ';
+          ss << " --offload-arch=" << arch << ' ';
           kernelProps["compiler_flags"] += ss.str();
         }
       }

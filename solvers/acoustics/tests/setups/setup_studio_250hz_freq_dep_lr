@@ -8,7 +8,7 @@ studio_250hz_p4_5ppw_freq_dep_lr
 ../../meshes/tests/studio_250hz_p4_5ppw_freq_dep_lr.msh
 
 [OUTPUT DIRECTORY]
-tests/data/generated
+/home/ashiedu/Repositories/Synesthesia/datasets/DG-FEM/runs/studio_250hz_p4_5ppw_freq_dep_lr
 
 [POLYNOMIAL DEGREE]
 4
@@ -78,7 +78,7 @@ FIXED
 6
 
 [THREAD MODEL]
-CUDA
+HIP
 
 [PLATFORM NUMBER]
 0
@@ -133,5 +133,4 @@ NODAL
 
 [VERBOSE]
 FALSE
-
 

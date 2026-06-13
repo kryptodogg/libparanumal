@@ -34,13 +34,13 @@
 #  include <sys/types.h>
 #  include <sys/stat.h>
 #  include <sys/syscall.h>
-#  include <sys/sysctl.h>
 #  include <sys/time.h>
 #  include <unistd.h>
 #  if (OCCA_OS & OCCA_LINUX_OS)
 #    include <errno.h>
 #    include <sys/sysinfo.h>
 #  else // OCCA_MACOS_OS
+#    include <sys/sysctl.h>
 #    include <mach/mach_host.h>
 #    ifdef __clang__
 #      include <CoreServices/CoreServices.h>
